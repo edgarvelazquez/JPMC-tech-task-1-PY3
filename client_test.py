@@ -22,7 +22,7 @@ class ClientTest(unittest.TestCase):
       self.assertEqual(getDataPoint(quote), (quote['stock'], quote['top_bid']['price'], quote['top_ask']['price'], (quote['top_bid']['price']+ quote['top_ask']['price'])/2))
 
   """ ------------ Add more unit tests ------------ """
-  #Test to check bid prices greater than ask
+  #Test to check bid prices is greater than asked
   def test_getDataPoint_calculatePriceBidLessThanAsk(self): 
     quotes = [
       {'top_ask': {'price': 119.2, 'size': 36}, 'timestamp': '2019-02-11 22:06:30.572453', 'top_bid': {'price': 12.48, 'size': 1}, 'id': '0.109974697771', 'stock': 'ABC'},
