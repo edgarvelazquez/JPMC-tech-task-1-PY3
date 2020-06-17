@@ -1,0 +1,25 @@
+From f9694cdb42d2fd51f4d0d4d6b69ad7e6826576ad Mon Sep 17 00:00:00 2001
+From: edgarvelazquez <edgar.ra.velazquez@gmail.com>
+Date: Wed, 17 Jun 2020 13:41:39 -0700
+Subject: [PATCH] Create Patch File
+
+---
+ client_test.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/client_test.py b/client_test.py
+index aa2bad2..925f781 100644
+--- a/client_test.py
++++ b/client_test.py
+@@ -22,7 +22,7 @@ class ClientTest(unittest.TestCase):
+       self.assertEqual(getDataPoint(quote), (quote['stock'], quote['top_bid']['price'], quote['top_ask']['price'], (quote['top_bid']['price']+ quote['top_ask']['price'])/2))
+ 
+   """ ------------ Add more unit tests ------------ """
+-  #Test to check bid prices greater than ask
++  #Test to check bid prices is greater than asked
+   def test_getDataPoint_calculatePriceBidLessThanAsk(self): 
+     quotes = [
+       {'top_ask': {'price': 119.2, 'size': 36}, 'timestamp': '2019-02-11 22:06:30.572453', 'top_bid': {'price': 12.48, 'size': 1}, 'id': '0.109974697771', 'stock': 'ABC'},
+-- 
+2.27.0.windows.1
+
