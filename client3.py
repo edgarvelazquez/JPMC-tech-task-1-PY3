@@ -34,15 +34,28 @@ def getDataPoint(quote):
 	""" ------------- Update this function ------------- """
 	stock = quote['stock']
 	bid_price = float(quote['top_bid']['price'])
-	ask_price = float(quote['top_ask']['price'])
-	price = bid_price
+	ask_price = float(quote['top_ask']['price']) 
+	price = (bid_price+ask_price) / 2 #The price formula was modified 
 	return stock, bid_price, ask_price, price
 
 def getRatio(price_a, price_b):
 	""" Get ratio of price_a and price_b """
 	""" ------------- Update this function ------------- """
 	""" Also create some unit tests for this function in client_test.py """
-	return 1
+	try:
+   		val = int(price_a)
+	except ValueError:
+   		#print("Input a is not an int, Please try again") # Uncomment in case we want to print the error message
+   		return
+	try:
+   		val = int(price_b)
+	except ValueError:
+   		#print("Input b is not an int, Please try again") #Uncomment in case we want to print the error message
+   		return
+
+	if(price_b==0): #check in case the second price is 0. This is to avoid dividing by zero
+		return
+	return (price_a/price_b) #It will return the price ratio
 
 # Main
 if __name__ == "__main__":
@@ -52,8 +65,11 @@ if __name__ == "__main__":
 		quotes = json.loads(urllib.request.urlopen(QUERY.format(random.random())).read())
 
 		""" ----------- Update to get the ratio --------------- """
+		prices = {}
 		for quote in quotes:
 			stock, bid_price, ask_price, price = getDataPoint(quote)
+			prices[stock]=price
 			print ("Quoted %s at (bid:%s, ask:%s, price:%s)" % (stock, bid_price, ask_price, price))
 
-		print ("Ratio %s" % getRatio(price, price))
+		print ("Ratio %s" % (getRatio(prices['ABC'], prices['DEF'])))
+		
